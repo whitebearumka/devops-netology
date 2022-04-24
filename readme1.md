@@ -16,6 +16,9 @@ USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
 root         1  0.0  0.0    900   528 ?        Sl   Apr22   0:00 /init
 ```
 4.
+```
+ls % 2>/dev/tty2
+```
 5.
 ```
 root@undistributed8://root/3/1# cat 123
