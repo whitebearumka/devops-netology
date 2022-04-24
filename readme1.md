@@ -5,6 +5,17 @@ cd is a shell builtin
 ```
 2. Команда "grep <some_string> <some_file> | wc -l" выводит количество строк в которых есть значение <some_string> в файле <some_file>. Аналогом этого может выступать команда grep c ключом -с.
 ```
+root@undistributed8://root/3/1# cat 111
+6383838583049
+2837489234723749
+2387428498472947
+29347298347982347
+2893479823749239384
+3934
+242
+423
+44
+5488
 root@undistributed8://root/3/1# grep 8 111 | wc -l
 6
 root@undistributed8://root/3/1# grep -c  8 111
