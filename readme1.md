@@ -42,7 +42,11 @@ root@undistributed8://root/3/1# cat 1234
 root@undistributed8://root/3/1# bash 5>&1
 root@undistributed8://root/3/1#
 ```
-
+Мы временно переназначили файловый дискриптор 5 на вывод STDOUT(1). Поэтому при выполнении
+```
+echo netology > /proc/$$/fd/5
+```
+сообщение netology попадет в STDOUT(1).
 8.
 
 9. Выведет все текущие пременные окружения, аналог команды "env"
