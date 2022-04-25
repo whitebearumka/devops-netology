@@ -57,7 +57,7 @@ root@undistributed8://root/3/1#
 ```
 echo netology > /proc/$$/fd/5
 ```
-сообщение netology попадет в STDOUT(1).
+сообщение netology попадет в STDOUT(1)
 8. 
 
 9. Выведет все текущие пременные окружения, аналог команды "env"
