@@ -81,6 +81,11 @@ echo netology > /proc/$$/fd/5
 cat /proc/cpuinfo|grep -io ' sse[0-9]'|sort -r|uniq|sed '1!d'
 ```
 Команда анализирует наличие инструкций SSE и выводит самую старшую (sort -r) и только одну (sed '1!d') версию набора инструкций SSE.
+```
+umka@ubuntu:/root/1$ cat /proc/cpuinfo|grep -io ' sse[0-9]'|sort -r|uniq|sed '1!d'
+ sse4
+```
+В моем случае ответ sse4 - наиболее старшую версию набора инструкций SSE
 
 12. Никаких ошибок как в задании.
 
