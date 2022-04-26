@@ -85,7 +85,7 @@ cat /proc/cpuinfo|grep -io ' sse[0-9]'|sort -r|uniq|sed '1!d'
 umka@ubuntu:/root/1$ cat /proc/cpuinfo|grep -io ' sse[0-9]'|sort -r|uniq|sed '1!d'
  sse4
 ```
-В моем случае ответ sse4 - наиболее старшую версию набора инструкций SSE
+В моем случае ответ sse4 - наиболее старшая версия набора инструкций SSE
 
 12. Никаких ошибок как в задании.
 
