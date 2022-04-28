@@ -76,11 +76,22 @@ echo netology > /proc/$$/fd/5
 ```
 является символической ссылкой, содержащей фактический путь к исполняемой команде. По-видимому, двоичный файл загружается в память и /proc/[pid]/exeуказывает на содержимое двоичного файла в памяти.
 
-11.
+11. Получился небольшой скринт+работа с массивами и строками
 ```
-cat /proc/cpuinfo|grep -io ' sse[0-9]'|sort -r|uniq|sed '1!d'
+#!/bin/bash
+list=($(cat /proc/cpuinfo|grep 'flags'))
+        for j in ${list[@]}
+                do
+                        if [[ "$j" == sse* ]]
+                                then echo $j;
+                                new+=($j);
+                        fi
+                done
+
+sorted=($(echo "${new[@]}" | sed 's/ /\n/g' | sort -r))
+echo ${sorted[0]}
 ```
-Команда анализирует наличие инструкций SSE и выводит самую старшую (sort -r) и только одну (sed '1!d') версию набора инструкций SSE.
+Команда анализирует наличие инструкций SSE и выводит самую старшую версию набора инструкций SSE.
 ```
 umka@ubuntu:/root/1$ cat /proc/cpuinfo|grep -io ' sse[0-9]'|sort -r|uniq|sed '1!d'
  sse4
