@@ -31,8 +31,19 @@ openat(AT_FDCWD, "/usr/share/misc/magic.mgc", O_RDONLY) = 3
 ```
 3. 
 4.
+Процесс при завершении (как нормальном, так и в результате не обрабатываемого сигнала) освобождает все свои ресурсы и становится «зомби» — пустой записью в таблице процессов, хранящей статус завершения, предназначенный для чтения родительским процессом.
+
 5.
 6.
+uname -a использует вызов uname()
+```
+uname({sysname="Linux", nodename="undistributed8", ...}) = 0
+```
+необходимо установить пакет manpages-dev, для просмотра мануалов по системным вызовам.
+```
+  Part of the utsname information is also accessible via /proc/sys/kernel/{ostype, hostname,  osrelease,  version, domainname}.
+```
+
 7.
 8.
 9.
