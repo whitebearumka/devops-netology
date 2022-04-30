@@ -1,4 +1,4 @@
-1. chdir("/tmp")
+1. `chdir("/tmp")`
 
 2.
 ```
@@ -55,7 +55,7 @@ ping    4076             root    1w      REG               8,16      112        
 5.
 
 6.
-uname -a использует вызов uname()
+`uname -a` использует вызов `uname()`
 ```
 uname({sysname="Linux", nodename="undistributed8", ...}) = 0
 ```
