@@ -57,8 +57,13 @@ root@undistributed8:~# mkdir /tmp/some_dir
 root@undistributed8:~# test -d /tmp/some_dir && echo Hi Hi
 Hi Hi
 ```
+Смысла нет 
+```
+set -e 
+-e  Exit immediately if a command exits with a non-zero status.
+```
+но продолжение выполнения && возможно только при выполнении первой команды с кодом 0, таким образом если первая команда имеет код завершения отличный от 0 то следующая команда не выполнится.
 8.
 9.
-10.
-11.
+
 
