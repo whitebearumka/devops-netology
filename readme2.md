@@ -31,13 +31,24 @@ openat(AT_FDCWD, "/usr/share/misc/magic.mgc", O_RDONLY) = 3
 ```
 3. Методов обнуления достаточно много
 ```
-
-
-
-
+> filename
+echo -n > filename
+cat /dev/null > filename
 ```
-
-
+В нашем случае мы можем применить > filename
+```
+root@undistributed8:~# ping 8.8.8.8 >> 999.log &
+[2] 4076
+root@undistributed8:~# lsof | grep 999.log
+ping    4076             root    1w      REG               8,16     1081            2935 /root/999.log
+root@undistributed8:~# rm /root/999.log
+root@undistributed8:~# lsof | grep 999.log
+ping    4076             root    1w      REG               8,16     5048            2935 /root/999.log (deleted)
+root@undistributed8:~# > /proc/4076/fd/1
+root@undistributed8:~# lsof | grep 999.log
+ping    4076             root    1w      REG               8,16      112            2935 /root/999.log (deleted)
+```
+Таким образом мы видим что после обнуления он начал наполнятся сначала (5048 > 112)
 5. 
 6. 
 7. Процесс при завершении (как нормальном, так и в результате не обрабатываемого сигнала) освобождает все свои ресурсы и становится «зомби» — пустой записью в таблице процессов, хранящей статус завершения, предназначенный для чтения родительским процессом.
