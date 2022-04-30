@@ -45,6 +45,18 @@ uname({sysname="Linux", nodename="undistributed8", ...}) = 0
 ```
 
 7.
+```
+; - последовательное выполнение команд(a;b;c;d)
+&& - Операторы && являются управляющими операторами. Если в командной строке стоит command1 && command2, то command2 выполняется в том, и только в том случае, если статус выхода из команды command1 равен 0, что говорит об успешном ее завершении.
+```
+```
+root@undistributed8:~# test -d /tmp/some_dir; echo Hi Hi
+Hi Hi
+root@undistributed8:~# test -d /tmp/some_dir && echo Hi Hi
+root@undistributed8:~# mkdir /tmp/some_dir
+root@undistributed8:~# test -d /tmp/some_dir && echo Hi Hi
+Hi Hi
+```
 8.
 9.
 10.
