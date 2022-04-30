@@ -53,6 +53,25 @@ ping    4076             root    1w      REG               8,16      112        
 4. Процесс при завершении (как нормальном, так и в результате не обрабатываемого сигнала) освобождает все свои ресурсы и становится «зомби» — пустой записью в таблице процессов, хранящей статус завершения, предназначенный для чтения родительским процессом.
 
 5.
+```
+root@vagrant:~# /usr/sbin/opensnoop-bpfcc
+PID    COMM               FD ERR PATH
+821    vminfo              4   0 /var/run/utmp
+617    dbus-daemon        -1   2 /usr/local/share/dbus-1/system-services
+617    dbus-daemon        19   0 /usr/share/dbus-1/system-services
+617    dbus-daemon        -1   2 /lib/dbus-1/system-services
+617    dbus-daemon        19   0 /var/lib/snapd/dbus-1/system-services/
+623    irqbalance          6   0 /proc/interrupts
+623    irqbalance          6   0 /proc/stat
+623    irqbalance          6   0 /proc/irq/20/smp_affinity
+623    irqbalance          6   0 /proc/irq/0/smp_affinity
+623    irqbalance          6   0 /proc/irq/1/smp_affinity
+623    irqbalance          6   0 /proc/irq/8/smp_affinity
+623    irqbalance          6   0 /proc/irq/12/smp_affinity
+623    irqbalance          6   0 /proc/irq/14/smp_affinity
+623    irqbalance          6   0 /proc/irq/15/smp_affinity
+
+```
 
 6.
 `uname -a` использует вызов `uname()`
