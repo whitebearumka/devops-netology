@@ -35,7 +35,7 @@ openat(AT_FDCWD, "/usr/share/misc/magic.mgc", O_RDONLY) = 3
 echo -n > filename
 cat /dev/null > filename
 ```
-В нашем случае мы можем применить > filename
+В нашем случае мы можем применить * > filename *
 ```
 root@undistributed8:~# ping 8.8.8.8 >> 999.log &
 [2] 4076
