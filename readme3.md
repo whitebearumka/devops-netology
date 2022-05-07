@@ -89,7 +89,7 @@ Keys:  Help   Display mode   Restart statistics   Order of fields   quit
 18. AS15169  142.251.238.82                                                       0.0%     4   51.4  52.2  44.8  67.1  10.4
 ```
 7.
-NS
+NS-записи
 ```
 root@undistributed8:~# dig dns.google NS
 
@@ -114,7 +114,7 @@ dns.google.             0       IN      NS      ns2.zdns.google.
 ;; WHEN: Sat May 07 17:05:09 +05 2022
 ;; MSG SIZE  rcvd: 154
 ```
-A
+A-записи
 ```
 root@undistributed8:~# dig dns.google A
 
