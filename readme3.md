@@ -182,4 +182,4 @@ root@undistributed8:~# dig -x 8.8.4.4
 ;; WHEN: Sat May 07 17:09:42 +05 2022
 ;; MSG SIZE  rcvd: 82
 ```
-
+Привязано доменное имя dns.google.
