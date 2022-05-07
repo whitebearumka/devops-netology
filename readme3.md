@@ -138,3 +138,48 @@ dns.google.             0       IN      A       8.8.4.4
 ;; MSG SIZE  rcvd: 70
 ```
 8.
+Запрос PTR-записи для 8.8.8.8
+```
+root@undistributed8:~# dig -x 8.8.8.8
+
+; <<>> DiG 9.16.1-Ubuntu <<>> -x 8.8.8.8
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 22905
+;; flags: qr rd ad; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0
+;; WARNING: recursion requested but not available
+
+;; QUESTION SECTION:
+;8.8.8.8.in-addr.arpa.          IN      PTR
+
+;; ANSWER SECTION:
+8.8.8.8.in-addr.arpa.   0       IN      PTR     dns.google.
+
+;; Query time: 0 msec
+;; SERVER: 172.23.80.1#53(172.23.80.1)
+;; WHEN: Sat May 07 17:08:04 +05 2022
+;; MSG SIZE  rcvd: 82
+```
+Запрос PTR-записи для 8.8.4.4
+```
+root@undistributed8:~# dig -x 8.8.4.4
+
+; <<>> DiG 9.16.1-Ubuntu <<>> -x 8.8.4.4
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 3078
+;; flags: qr rd ad; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0
+;; WARNING: recursion requested but not available
+
+;; QUESTION SECTION:
+;4.4.8.8.in-addr.arpa.          IN      PTR
+
+;; ANSWER SECTION:
+4.4.8.8.in-addr.arpa.   0       IN      PTR     dns.google.
+
+;; Query time: 190 msec
+;; SERVER: 172.23.80.1#53(172.23.80.1)
+;; WHEN: Sat May 07 17:09:42 +05 2022
+;; MSG SIZE  rcvd: 82
+```
+
