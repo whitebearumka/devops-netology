@@ -47,5 +47,94 @@ source:         RIPE
 ```
 5.
 6.
+```
+                                                   My traceroute  [v0.93]
+undistributed8 (172.23.88.111)                                                                     2022-05-07T16:49:57+0500
+Keys:  Help   Display mode   Restart statistics   Order of fields   quit
+                                                                                   Packets               Pings
+ Host                                                                            Loss%   Snt   Last   Avg  Best  Wrst StDev
+ 1. AS???    undistributed8.mshome.net                                            0.0%     5    0.3   0.5   0.3   0.8   0.2
+ 2. AS???    192.168.0.1                                                          0.0%     5    2.3   2.8   2.3   3.8   0.7
+ 3. AS???    100.94.128.1                                                         0.0%     5    3.1   9.8   3.1  17.1   6.8
+ 4. AS???    10.1.230.99                                                          0.0%     5    2.6   2.8   2.6   3.0   0.2
+ 5. AS???    10.1.230.113                                                         0.0%     5    3.2   6.4   3.2  15.4   5.1
+ 6. AS???    10.0.22.81                                                           0.0%     5    4.2  14.8   4.2  29.5  11.9
+ 7. AS???    10.0.22.10                                                           0.0%     5    5.1   9.6   4.9  23.8   8.0
+ 8. AS???    10.0.20.25                                                           0.0%     5    7.0   7.5   5.9   9.9   1.5
+ 9. AS???    10.0.20.21                                                           0.0%     5    9.6  10.1   6.7  18.3   4.7
+10. AS???    10.2.3.17                                                            0.0%     5    4.7   5.9   4.3   8.8   2.0
+11. AS???    10.1.84.33                                                           0.0%     5    7.3   9.3   5.1  22.0   7.2
+12. AS???    10.1.65.22                                                           0.0%     5    5.5   6.7   4.4  14.5   4.4
+13. AS???    10.1.65.65                                                           0.0%     5    9.6   7.7   5.2   9.6   1.9
+14. AS???    10.3.2.3                                                             0.0%     5   23.9  28.2  23.9  32.6   3.2
+15. AS15169  72.14.220.188                                                        0.0%     5   30.4  28.0  26.9  30.4   1.4
+16. AS15169  142.251.68.223                                                       0.0%     5   33.4  31.6  26.3  34.0   3.2
+17. AS15169  108.170.250.99                                                       0.0%     5   31.0  30.4  27.1  33.0   2.4
+18. AS15169  142.251.238.82                                                       0.0%     4   51.4  52.2  44.8  67.1  10.4
+19. AS15169  142.251.238.68                                                       0.0%     4   62.5  51.0  42.6  62.5   9.0
+20. AS15169  172.253.51.187                                                       0.0%     4   42.1  47.1  42.0  60.4   8.9
+21. (waiting for reply)
+22. (waiting for reply)
+23. (waiting for reply)
+24. (waiting for reply)
+25. (waiting for reply)
+26. (waiting for reply)
+27. (waiting for reply)
+28. (waiting for reply)
+29. (waiting for reply)
+30. AS15169  dns.google                                                           0.0%     4   42.5  49.0  42.5  63.5   9.8
+```
+Если орентироватся на максимальное среднее время задержки то это 18 хоп (Максимальное среднее время задержки 52 мс)
+```
+18. AS15169  142.251.238.82                                                       0.0%     4   51.4  52.2  44.8  67.1  10.4
+```
 7.
+NS
+```
+root@undistributed8:~# dig dns.google NS
+
+; <<>> DiG 9.16.1-Ubuntu <<>> dns.google NS
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 44937
+;; flags: qr rd ad; QUERY: 1, ANSWER: 4, AUTHORITY: 0, ADDITIONAL: 0
+;; WARNING: recursion requested but not available
+
+;; QUESTION SECTION:
+;dns.google.                    IN      NS
+
+;; ANSWER SECTION:
+dns.google.             0       IN      NS      ns1.zdns.google.
+dns.google.             0       IN      NS      ns4.zdns.google.
+dns.google.             0       IN      NS      ns3.zdns.google.
+dns.google.             0       IN      NS      ns2.zdns.google.
+
+;; Query time: 180 msec
+;; SERVER: 172.23.80.1#53(172.23.80.1)
+;; WHEN: Sat May 07 17:05:09 +05 2022
+;; MSG SIZE  rcvd: 154
+```
+A
+```
+root@undistributed8:~# dig dns.google A
+
+; <<>> DiG 9.16.1-Ubuntu <<>> dns.google A
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 47127
+;; flags: qr rd ad; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 0
+;; WARNING: recursion requested but not available
+
+;; QUESTION SECTION:
+;dns.google.                    IN      A
+
+;; ANSWER SECTION:
+dns.google.             0       IN      A       8.8.8.8
+dns.google.             0       IN      A       8.8.4.4
+
+;; Query time: 0 msec
+;; SERVER: 172.23.80.1#53(172.23.80.1)
+;; WHEN: Sat May 07 17:06:05 +05 2022
+;; MSG SIZE  rcvd: 70
+```
 8.
