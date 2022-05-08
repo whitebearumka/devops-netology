@@ -1,6 +1,7 @@
 
-1.
-2.
+1. Не успел сделать. Прошу отправить на доработку
+2. Не успел сделать. Прошу отправить на доработку
+
 3.Все получилось успешно
 
 ![Settings Window](https://github.com/whitebearumka/devops-netology/blob/main/Screenshot_11.png)
