@@ -10,7 +10,7 @@ root@vagrant:~# dmesg | grep virt
 [    0.671609] Performance Events: PMU not available due to virtualization, using software events only.
 [   13.261629] systemd[1]: Detected virtualization oracle.
 ```
-dmesg показывает что система запускается в виртуальной машине от oracle/
+dmesg показывает что система запускается в виртуальной среде KVM от oracle.
 В отличии от другой системы которая работает в WSL2
 ```
 root@undistributed8:~# dmesg | grep virt
