@@ -3,6 +3,21 @@
 2.
 3.
 4.
+```
+root@vagrant:~# dmesg | grep virt
+[    0.007726] CPU MTRRs all blank - virtualized system.
+[    0.059869] Booting paravirtualized kernel on KVM
+[    0.671609] Performance Events: PMU not available due to virtualization, using software events only.
+[   13.261629] systemd[1]: Detected virtualization oracle.
+```
+dmesg показывает что система запускается в виртуальной машине от oracle/
+В отличии от другой системы которая работает в WSL2
+```
+root@undistributed8:~# dmesg | grep virt
+[    0.045678] Booting paravirtualized kernel on Hyper-V
+[    0.147874] Performance Events: PMU not available due to virtualization, using software events only.
+```
+Где показывается что система запускается в паравиртуализации от Hyper-V.
 5.
 ```
 root@undistributed8:~# /sbin/sysctl -n fs.nr_open
