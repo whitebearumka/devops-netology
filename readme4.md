@@ -42,9 +42,19 @@ root@vagrant:~# ulimit -n 1048577
 Увеличить лимит больше чем fs.nr_open нельзя.
 
 6.
-
-
-
+```
+root@vagrant:/# unshare --fork --pid --mount-proc ping 8.8.8.8
+root@vagrant:~# ps aux|grep ping
+root       97201  0.0  0.0   5480   592 pts/1    S+   15:12   0:00 unshare --fork --pid --mount-proc ping 8.8.8.8
+root       97202  0.0  0.0   7092   936 pts/1    S+   15:12   0:00 ping 8.8.8.8
+root       97204  0.0  0.0   6300   736 pts/2    S+   15:13   0:00 grep --color=auto ping
+root@vagrant:~# nsenter --target 97202 --pid --mount
+root@vagrant:/# ps aux
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.1  0.0   7092   936 pts/1    S+   15:12   0:00 ping 8.8.8.8
+root           2  0.1  0.4   7356  4176 pts/2    S    15:13   0:00 -bash
+root          13  0.0  0.3   8892  3416 pts/2    R+   15:14   0:00 ps aux
+```
 7.
 Если попробовать разложить эту строку ``:(){ :|:& };:``
 ```
