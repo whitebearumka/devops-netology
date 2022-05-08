@@ -18,6 +18,7 @@ root@undistributed8:~# dmesg | grep virt
 [    0.147874] Performance Events: PMU not available due to virtualization, using software events only.
 ```
 Где показывается что система запускается в паравиртуализации от Hyper-V.
+
 5.
 ```
 root@undistributed8:~# /sbin/sysctl -n fs.nr_open
