@@ -40,6 +40,7 @@ root@vagrant:~# ulimit -n 1048577
 -bash: ulimit: open files: cannot modify limit: Operation not permitted
 ```
 Увеличить лимит больше чем fs.nr_open нельзя.
+
 6.
 
 
