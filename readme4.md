@@ -1,7 +1,10 @@
 
 1.
 2.
-3.
+3.Все получилось успешно
+
+![Settings Window](https://github.com/whitebearumka/devops-netology/blob/main/Screenshot_11.png)
+
 4.
 ```
 root@vagrant:~# dmesg | grep virt
