@@ -28,6 +28,23 @@ Set-Cookie: prov=8507b53a-9d99-6d19-976d-304af57ac320; domain=.stackoverflow.com
 Connection closed by foreign host.
 ```
 2.
+Первый ответ сервера 
+```
+Status Code: 307 Internal Redirect
+```
+Полный ответ HTTP сервера
+```
+HTTP/1.1 307 Internal Redirect
+Location: https://stackoverflow.com/
+Cross-Origin-Resource-Policy: Cross-Origin
+Non-Authoritative-Reason: HSTS
+```
+Самый долгий запрос 4.03 секунды
+```
+Request URL: https://stats.g.doubleclick.net/j/collect?t=dc&aip=1&_r=3&v=1&_v=j96&tid=UA-108242619-1&cid=1081787660.1651930870&jid=1314158479&gjid=821821134&_gid=30943335.1651930870&_u=SCCACEAAFAAAAC~&z=1112844665
+Referrer Policy: strict-origin-when-cross-origin
+```
+
 3.
 ```
 136.169.173.181
