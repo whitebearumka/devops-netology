@@ -7,23 +7,23 @@ Escape character is '^]'.
 GET /questions HTTP/1.0
 HOST: stackoverflow.com
 
-HTTP/1.1 301 Moved Permanently
-cache-control: no-cache, no-store, must-revalidate
-location: https://stackoverflow.com/questions
-x-request-guid: 71e5455f-f540-446b-b62b-851e0d745288
-feature-policy: microphone 'none'; speaker 'none'
-content-security-policy: upgrade-insecure-requests; frame-ancestors 'self' https://stackexchange.com
-Accept-Ranges: bytes
-Date: Sat, 07 May 2022 10:39:31 GMT
-Via: 1.1 varnish
-Connection: close
-X-Served-By: cache-hel1410030-HEL
-X-Cache: MISS
-X-Cache-Hits: 0
-X-Timer: S1651919972.726583,VS0,VE110
-Vary: Fastly-SSL
-X-DNS-Prefetch-Control: off
-Set-Cookie: prov=8507b53a-9d99-6d19-976d-304af57ac320; domain=.stackoverflow.com; expires=Fri, 01-Jan-2055 00:00:00 GMT; path=/; HttpOnly
+HTTP/1.1 301 Moved Permanently //HTTP времено перемещен
+cache-control: no-cache, no-store, must-revalidate //Нужно ли кешировать(В кеше не должно сохраняться ничего — ни по запросам клиента, ни по ответам сервера. Запрос всегда отправляется на сервер, ответ всегда загружается полностью.)
+location: https://stackoverflow.com/questions //Просим браузер загрузить страницу HTTPS https://stackoverflow.com/questions
+x-request-guid: 71e5455f-f540-446b-b62b-851e0d745288 //Идентификатор запроса на сервере.
+feature-policy: microphone 'none'; speaker 'none'// Требуется ли включить микрофон(НЕТ),Нужно ли включить динамик(НЕТ).
+content-security-policy: upgrade-insecure-requests; frame-ancestors 'self' https://stackexchange.com //Включена политика защиты контента(upgrade-insecure-requests который обяжет браузеры, которые поддерживают спецификацию Upgrade-Insecure-Requests, отправлять запросы на сайт в защищенном режиме. Фреймы разрешены только с https://stackexchange.com)
+Accept-Ranges: bytes//В Accept-Ranges HTTP заголовок ответа является маркером , используемым сервером , чтобы рекламировать свою поддержку частичных запросов от клиента для загрузки файлов. Значение этого поля указывает единицу измерения, которую можно использовать для определения диапазона.
+Date: Sat, 07 May 2022 10:39:31 GMT//Дата и время
+Via: 1.1 varnish//Сервер использует Varnish HTTP Cache.
+Connection: close//Соединение закрыто
+X-Served-By: cache-hel1410030-HEL //Этот заголовок предоставляет идентификаторы сервера защиты и узла локального кэша, где запрос ищет данные.
+X-Cache: MISS//Обычно имеет два значения (например, «X-Cache: MISS, MISS»). Первое значение указывает, доступен ли кэш на защищенном сервере, а второе указывает, доступен ли он на локальном сервере кэша.
+X-Cache-Hits: 0//Этот заголовок, как и заголовок «X-Cache», помогает определить, был ли запрос обслужен из локального центра обработки данных CDN или исходного сервера
+X-Timer: S1651919972.726583,VS0,VE110 //Время от Varnish HTTP Cache (	Sat May 07 2022 10:39:32 GMT+0000)
+Vary: Fastly-SSL//Заголовок ответа Vary сообщает кэшам, что определенный заголовок (или заголовки) из запроса следует использовать, чтобы сделать ключ кэша для объекта более конкретным. В данном случае что используется TLS от облачной компании Fastly.
+X-DNS-Prefetch-Control: off//Не указывать сервера для нахождения контента. запросы будут идти через DNS.
+Set-Cookie: prov=8507b53a-9d99-6d19-976d-304af57ac320; domain=.stackoverflow.com; expires=Fri, 01-Jan-2055 00:00:00 GMT; path=/; HttpOnly//Отправить куки на агент со сроком до 1 января 2055года.
 
 Connection closed by foreign host.
 ```
