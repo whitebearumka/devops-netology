@@ -44,7 +44,7 @@ Non-Authoritative-Reason: HSTS
 Request URL: https://stats.g.doubleclick.net/j/collect?t=dc&aip=1&_r=3&v=1&_v=j96&tid=UA-108242619-1&cid=1081787660.1651930870&jid=1314158479&gjid=821821134&_gid=30943335.1651930870&_u=SCCACEAAFAAAAC~&z=1112844665
 Referrer Policy: strict-origin-when-cross-origin
 ```
-
+![Settings Window](https://github.com/whitebearumka/devops-netology/blob/main/Screenshot_9.png)
 3.
 ```
 136.169.173.181
