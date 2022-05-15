@@ -141,10 +141,9 @@ Calling ioctl() to re-read partition table.
 Syncing disks.
 ```
 Переечитываем таблицу разделов
-```
-
-
-```
+``
+partprobe
+``
 6. ## Соберите mdadm RAID1 на паре разделов 2 Гб.
 Удаляем метаданные и подписи на дисках
 ```
