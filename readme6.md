@@ -140,7 +140,23 @@ The partition table has been altered.
 Calling ioctl() to re-read partition table.
 Syncing disks.
 ```
+Переечитываем таблицу разделов
+```
+
+
+```
 6. ## Соберите mdadm RAID1 на паре разделов 2 Гб.
+Удаляем метаданные и подписи на дисках
+```
+root@vagrant:~# wipefs  --all --force /dev/sd{b,c}
+/dev/sdb: 2 bytes were erased at offset 0x000001fe (dos): 55 aa
+/dev/sdc: 2 bytes were erased at offset 0x000001fe (dos): 55 aa
+```
+Собираем RAID1 из разделов /dev/sdb1 и /dev/sdc1
+```
+
+
+```
 
 7. ## Соберите mdadm RAID0 на второй паре маленьких разделов.
 
