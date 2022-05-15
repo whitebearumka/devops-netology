@@ -145,20 +145,36 @@ Syncing disks.
 partprobe
 ``
 6. ## Соберите mdadm RAID1 на паре разделов 2 Гб.
-Удаляем метаданные и подписи на дисках
-```
-root@vagrant:~# wipefs  --all --force /dev/sd{b,c}
-/dev/sdb: 2 bytes were erased at offset 0x000001fe (dos): 55 aa
-/dev/sdc: 2 bytes were erased at offset 0x000001fe (dos): 55 aa
-```
 Собираем RAID1 из разделов /dev/sdb1 и /dev/sdc1
 ```
-
-
+root@vagrant:~# mdadm --create --verbose /dev/md0 -l 1 -n 2 /dev/sdb1 /dev/sdc1
+mdadm: Note: this array has metadata at the start and
+    may not be suitable as a boot device.  If you plan to
+    store '/boot' on this device please ensure that
+    your boot-loader understands md/v1.x metadata, or use
+    --metadata=0.90
+mdadm: size set to 2094080K
+Continue creating array? y
+mdadm: Defaulting to version 1.2 metadata
+mdadm: array /dev/md0 started.
+root@vagrant:~# fdisk -l /dev/md0
+Disk /dev/md0: 1.102 GiB, 2144337920 bytes, 4188160 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
 ```
-
 7. ## Соберите mdadm RAID0 на второй паре маленьких разделов.
-
+```
+root@vagrant:~# mdadm --create --verbose /dev/md1 -l 0 -n 2 /dev/sdb2 /dev/sdc2
+mdadm: chunk size defaults to 512K
+mdadm: Defaulting to version 1.2 metadata
+mdadm: array /dev/md1 started.
+root@vagrant:~# fdisk -l /dev/md1
+Disk /dev/md1: 1018 MiB, 1067450368 bytes, 2084864 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 524288 bytes / 1048576 bytes.
+```
 8. ## Создайте 2 независимых PV на получившихся md-устройствах.
 
 9. ## Создайте общую volume-group на этих двух PV.
