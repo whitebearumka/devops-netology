@@ -230,6 +230,10 @@ root@vagrant:~# vgcreate vg1 /dev/md0 /dev/md1
 ```
 
 10. ## Создайте LV размером 100 Мб, указав его расположение на PV с RAID0.
+```
+root@vagrant:~# lvcreate -L 100M -n lv1 vg1 /dev/md1
+  Logical volume "lv1" created.
+```
 
 11. ## Создайте mkfs.ext4 ФС на получившемся LV.
 
