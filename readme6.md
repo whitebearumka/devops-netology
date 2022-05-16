@@ -108,6 +108,7 @@ The partition table has been altered.
 Calling ioctl() to re-read partition table.
 Syncing disks.
 ```
+
 5. ## Используя sfdisk, перенесите данную таблицу разделов на второй диск.
 ```
 root@vagrant:~# sfdisk -d /dev/sdb | sfdisk /dev/sdc
@@ -144,6 +145,7 @@ Syncing disks.
 ``
 partprobe
 ``
+
 6. ## Соберите mdadm RAID1 на паре разделов 2 Гб.
 Собираем RAID1 из разделов /dev/sdb1 и /dev/sdc1
 ```
@@ -163,6 +165,7 @@ Units: sectors of 1 * 512 = 512 bytes
 Sector size (logical/physical): 512 bytes / 512 bytes
 I/O size (minimum/optimal): 512 bytes / 512 bytes
 ```
+
 7. ## Соберите mdadm RAID0 на второй паре маленьких разделов.
 ```
 root@vagrant:~# mdadm --create --verbose /dev/md1 -l 0 -n 2 /dev/sdb2 /dev/sdc2
@@ -175,9 +178,56 @@ Units: sectors of 1 * 512 = 512 bytes
 Sector size (logical/physical): 512 bytes / 512 bytes
 I/O size (minimum/optimal): 524288 bytes / 1048576 bytes.
 ```
-8. ## Создайте 2 независимых PV на получившихся md-устройствах.
 
+8. ## Создайте 2 независимых PV на получившихся md-устройствах.
+```
+root@vagrant:~# pvcreate  /dev/md0
+  Physical volume "/dev/md0" successfully created.
+root@vagrant:~# pvcreate  /dev/md1
+  Physical volume "/dev/md1" successfully created.
+```
+Физический уровень LVM сейчас выглядит так
+```
+root@vagrant:~# pvdisplay
+  --- Physical volume ---
+  PV Name               /dev/sda3
+  VG Name               ubuntu-vg
+  PV Size               <63.00 GiB / not usable 0
+  Allocatable           yes
+  PE Size               4.00 MiB
+  Total PE              16127
+  Free PE               8063
+  Allocated PE          8064
+  PV UUID               sDUvKe-EtCc-gKuY-ZXTD-1B1d-eh9Q-XldxLf
+
+  --- Physical volume ---
+  PV Name               /dev/md0
+  VG Name               vg1
+  PV Size               <2.00 GiB / not usable 0
+  Allocatable           yes
+  PE Size               4.00 MiB
+  Total PE              511
+  Free PE               511
+  Allocated PE          0
+  PV UUID               cjFlev-sm2G-g9HX-xSTY-P1WF-jZdq-ikkiSc
+
+  --- Physical volume ---
+  PV Name               /dev/md1
+  VG Name               vg1
+  PV Size               1018.00 MiB / not usable 2.00 MiB
+  Allocatable           yes
+  PE Size               4.00 MiB
+  Total PE              254
+  Free PE               254
+  Allocated PE          0
+  PV UUID               VATBsB-4r1c-EqOa-10ja-esik-9r0k-a9fJan
+  ```
+  
 9. ## Создайте общую volume-group на этих двух PV.
+```
+root@vagrant:~# vgcreate vg1 /dev/md0 /dev/md1
+  Volume group "vg1" successfully created
+```
 
 10. ## Создайте LV размером 100 Мб, указав его расположение на PV с RAID0.
 
