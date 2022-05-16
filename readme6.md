@@ -249,10 +249,55 @@ Writing superblocks and filesystem accounting information: done
 ```
 
 12. ## Смонтируйте этот раздел в любую директорию, например, /tmp/new.
+```
+root@vagrant:~# mkdir /tmp/new
+root@vagrant:~# mount /dev/vg1/lv1 /tmp/new
+```
 
 13. ## Поместите туда тестовый файл, например wget https://mirror.yandex.ru/ubuntu/ls-lR.gz -O /tmp/new/test.gz.
+```
+root@vagrant:~# wget https://mirror.yandex.ru/ubuntu/ls-lR.gz -O /tmp/new/test.gz
+--2022-05-16 01:44:53--  https://mirror.yandex.ru/ubuntu/ls-lR.gz
+Resolving mirror.yandex.ru (mirror.yandex.ru)... 213.180.204.183, 2a02:6b8::183
+Connecting to mirror.yandex.ru (mirror.yandex.ru)|213.180.204.183|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 23063684 (22M) [application/octet-stream]
+Saving to: ‘/tmp/new/test.gz’
+
+/tmp/new/test.gz                                     100%[====================================================================================================================>]  22.00M  2.95MB/s    in 7.9s
+
+2022-05-16 01:45:01 (2.80 MB/s) - ‘/tmp/new/test.gz’ saved [23063684/23063684]
+```
 
 14. ## Прикрепите вывод lsblk.
+```
+root@vagrant:~# lsblk
+NAME                      MAJ:MIN RM  SIZE RO TYPE  MOUNTPOINT
+loop0                       7:0    0 55.5M  1 loop  /snap/core18/2344
+loop2                       7:2    0 61.9M  1 loop  /snap/core20/1405
+loop3                       7:3    0 67.8M  1 loop  /snap/lxd/22753
+loop4                       7:4    0 61.9M  1 loop  /snap/core20/1434
+loop5                       7:5    0 70.3M  1 loop  /snap/lxd/21029
+loop6                       7:6    0 44.7M  1 loop  /snap/snapd/15534
+loop7                       7:7    0 55.5M  1 loop  /snap/core18/2409
+sda                         8:0    0   64G  0 disk
+├─sda1                      8:1    0    1M  0 part
+├─sda2                      8:2    0    1G  0 part  /boot
+└─sda3                      8:3    0   63G  0 part
+  └─ubuntu--vg-ubuntu--lv 253:0    0 31.5G  0 lvm   /
+sdb                         8:16   0  2.5G  0 disk
+├─sdb1                      8:17   0    2G  0 part
+│ └─md0                     9:0    0    2G  0 raid1
+└─sdb2                      8:18   0  511M  0 part
+  └─md1                     9:1    0 1018M  0 raid0
+    └─vg1-lv1             253:1    0  100M  0 lvm   /tmp/new
+sdc                         8:32   0  2.5G  0 disk
+├─sdc1                      8:33   0    2G  0 part
+│ └─md0                     9:0    0    2G  0 raid1
+└─sdc2                      8:34   0  511M  0 part
+  └─md1                     9:1    0 1018M  0 raid0
+    └─vg1-lv1             253:1    0  100M  0 lvm   /tmp/new
+```
 
 15. ## Протестируйте целостность файла:
 ```
@@ -260,6 +305,8 @@ root@vagrant:~# gzip -t /tmp/new/test.gz
 root@vagrant:~# echo $?
 0
 ```
+Все верно
+
 16. ## Используя pvmove, переместите содержимое PV с RAID0 на RAID1.
 
 17. ## Сделайте --fail на устройство в вашем RAID1 md.
