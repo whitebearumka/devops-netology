@@ -308,6 +308,11 @@ root@vagrant:~# echo $?
 Все верно
 
 16. ## Используя pvmove, переместите содержимое PV с RAID0 на RAID1.
+```
+root@vagrant:~# pvmove -i5 /dev/md1 /dev/md0
+  /dev/md1: Moved: 12.00%
+  /dev/md1: Moved: 100.00%
+```
 
 17. ## Сделайте --fail на устройство в вашем RAID1 md.
 
