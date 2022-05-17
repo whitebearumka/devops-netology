@@ -315,6 +315,66 @@ root@vagrant:~# pvmove -i5 /dev/md1 /dev/md0
 ```
 
 17. ## Сделайте --fail на устройство в вашем RAID1 md.
+```
+root@vagrant:~# mdadm --detail /dev/md0
+/dev/md0:
+           Version : 1.2
+     Creation Time : Sun May 15 23:52:15 2022
+        Raid Level : raid1
+        Array Size : 2094080 (2045.00 MiB 2144.34 MB)
+     Used Dev Size : 2094080 (2045.00 MiB 2144.34 MB)
+      Raid Devices : 2
+     Total Devices : 2
+       Persistence : Superblock is persistent
+
+       Update Time : Tue May 17 22:09:45 2022
+             State : clean
+    Active Devices : 2
+   Working Devices : 2
+    Failed Devices : 0
+     Spare Devices : 0
+
+Consistency Policy : resync
+
+              Name : vagrant:0  (local to host vagrant)
+              UUID : 31b87075:f96ff9c6:7b8d9339:cc0265d5
+            Events : 17
+
+    Number   Major   Minor   RaidDevice State
+       0       8       17        0      active sync   /dev/sdb1
+       1       8       33        1      active sync   /dev/sdc1
+root@vagrant:~# mdadm /dev/md0 -f /dev/sdc1
+mdadm: set /dev/sdc1 faulty in /dev/md0
+root@vagrant:~# mdadm --detail /dev/md0
+/dev/md0:
+           Version : 1.2
+     Creation Time : Sun May 15 23:52:15 2022
+        Raid Level : raid1
+        Array Size : 2094080 (2045.00 MiB 2144.34 MB)
+     Used Dev Size : 2094080 (2045.00 MiB 2144.34 MB)
+      Raid Devices : 2
+     Total Devices : 2
+       Persistence : Superblock is persistent
+
+       Update Time : Tue May 17 22:14:30 2022
+             State : clean, degraded
+    Active Devices : 1
+   Working Devices : 1
+    Failed Devices : 1
+     Spare Devices : 0
+
+Consistency Policy : resync
+
+              Name : vagrant:0  (local to host vagrant)
+              UUID : 31b87075:f96ff9c6:7b8d9339:cc0265d5
+            Events : 19
+
+    Number   Major   Minor   RaidDevice State
+       0       8       17        0      active sync   /dev/sdb1
+       -       0        0        1      removed
+
+       1       8       33        -      faulty   /dev/sdc1
+```
 
 18. ## Подтвердите выводом dmesg, что RAID1 работает в деградированном состоянии.
 
