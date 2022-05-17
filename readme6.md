@@ -377,6 +377,10 @@ Consistency Policy : resync
 ```
 
 18. ## Подтвердите выводом dmesg, что RAID1 работает в деградированном состоянии.
+```
+[108104.875277] md/raid1:md0: Disk failure on sdc1, disabling device.
+                md/raid1:md0: Operation continuing on 1 devices.
+```
 
 19. ## Протестируйте целостность файла, несмотря на "сбойный" диск он должен продолжать быть доступен:
 ```
@@ -384,4 +388,5 @@ root@vagrant:~# gzip -t /tmp/new/test.gz
 root@vagrant:~# echo $?
 0
 ```
+Все верно с файлом все в порядке, поскольку он "де факто" находится на разделе /dev/sdb1
 20. ## Погасите тестовый хост, vagrant destroy.
